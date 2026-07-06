@@ -1,159 +1,201 @@
-# IoT-Based Accident Detection and Emergency Alert System
+# 🚗 IoT-Based Accident Detection and Emergency Alert System
 
-> A smart IoT-based vehicle safety system that automatically detects road accidents using motion sensors and instantly shares the accident location with emergency contacts via Telegram.
+> A team-developed IoT-based embedded system that detects vehicle accidents using the MPU-9250 sensor and automatically sends real-time GPS location alerts via Telegram using an ESP32 NodeMCU.
 
 ![ESP32](https://img.shields.io/badge/ESP32-NodeMCU-red)
-![IoT](https://img.shields.io/badge/IoT-Embedded-blue)
+![Arduino](https://img.shields.io/badge/Platform-Arduino%20IDE-blue)
 ![GPS](https://img.shields.io/badge/GPS-Ublox%207M-green)
-![MPU9250](https://img.shields.io/badge/Sensor-MPU9250-orange)
+![Sensor](https://img.shields.io/badge/Sensor-MPU9250-orange)
 ![Language](https://img.shields.io/badge/Language-Arduino%20C++-yellow)
 
 ---
 
-## Overview
+# 📖 Overview
 
-Road accidents often result in delayed emergency response because victims may be unconscious or unable to communicate their location. This project presents a low-cost IoT-based accident detection system capable of automatically identifying collisions and notifying emergency contacts with the vehicle's real-time GPS location.
+Road accidents often result in delayed emergency response because victims may be unconscious or unable to communicate their location. This project presents a low-cost IoT-based accident detection and emergency alert system capable of automatically detecting accidents and notifying emergency contacts with the vehicle's live GPS location.
 
-The system continuously monitors vehicle acceleration using an MPU-9250 inertial measurement unit. When the measured acceleration exceeds a predefined threshold, the ESP32 retrieves GPS coordinates from the Ublox 7M GPS module and sends an emergency alert through the Telegram Bot API, including a clickable Google Maps location.
-
----
-
-## Features
-
-- Automatic accident detection
-- Real-time GPS location tracking
-- Instant Telegram notification
-- Google Maps location sharing
-- ESP32-based embedded implementation
-- Low-cost IoT architecture
-- Lightweight and portable design
+The system continuously monitors acceleration using the MPU-9250 Inertial Measurement Unit (IMU). When the measured acceleration exceeds a predefined threshold, the ESP32 retrieves the current GPS coordinates from the Ublox 7M GPS module and sends an emergency notification through the Telegram Bot API, including a clickable Google Maps location.
 
 ---
 
-## Hardware Components
+# ✨ Features
 
-| Component | Purpose |
-|-----------|---------|
-| ESP32 NodeMCU | Main controller |
-| MPU-9250 | 9-axis motion sensing |
-| Ublox 7M GPS Module | GPS location tracking |
-| Buzzer | Local emergency alert |
-| Wi-Fi | Internet connectivity |
+- 🚗 Automatic accident detection using acceleration threshold
+- 📍 Real-time GPS location tracking
+- 📲 Telegram-based emergency notification
+- 🗺️ Google Maps location sharing
+- 🌐 Wi-Fi enabled IoT communication
+- 🔊 Local buzzer alert
+- ⚡ ESP32-based embedded implementation
 
 ---
 
-## Software Stack
+# 🛠 Hardware Components
+
+| Component | Description |
+|------------|-------------|
+| ESP32 NodeMCU | Main Controller |
+| MPU-9250 | 9-Axis Motion Sensor |
+| Ublox 7M GPS Module | GPS Receiver |
+| Buzzer | Emergency Alert |
+| Wi-Fi | Internet Connectivity |
+
+<p align="center">
+  <img src="images/esp32.jpg" width="180">
+  <img src="images/mpu9250.jpg" width="180">
+  <img src="images/gps_module_ublox7m.jpg" width="180">
+</p>
+
+---
+
+# 💻 Software Stack
 
 - Arduino IDE
 - Arduino C++
 - TinyGPS++
-- MPU9250 Library
 - WiFi Library
 - HTTPClient Library
+- Wire Library
 - Telegram Bot API
 
 ---
 
-## System Architecture
+# 🏗️ System Architecture
 
-> *(Insert architecture image here later)*
-
-```
-MPU-9250
-     │
-     ▼
- ESP32 NodeMCU
-     │
- ┌───┴────┐
- │        │
- ▼        ▼
-GPS     Buzzer
- │
- ▼
-Telegram Bot
- │
- ▼
-Emergency Contact
-```
+<p align="center">
+  <img src="circuit/circuit_diagram.png" width="850">
+</p>
 
 ---
 
-## Working Principle
+# ⚙️ Working Principle
 
-1. ESP32 continuously reads acceleration values from the MPU-9250.
+1. ESP32 continuously reads acceleration data from the MPU-9250 sensor.
 2. The resultant acceleration (G-force) is calculated.
-3. If the G-force exceeds the accident threshold, an accident is detected.
-4. ESP32 obtains the current GPS coordinates.
-5. A Telegram alert containing a Google Maps link is sent to emergency contacts.
-6. The buzzer is activated to alert nearby people.
+3. If the acceleration exceeds the predefined threshold, an accident is detected.
+4. The current GPS coordinates are obtained from the Ublox 7M GPS module.
+5. ESP32 connects to the internet via Wi-Fi.
+6. An emergency notification is sent using the Telegram Bot API.
+7. The emergency contact receives:
+   - 🚨 Accident alert
+   - 📍 GPS coordinates
+   - 🗺️ Google Maps location link
+8. A buzzer is activated to alert nearby people.
 
 ---
 
-## Project Structure
+# 📱 Telegram Alert
+
+<p align="center">
+  <img src="images/telegram_alert.png" width="350">
+</p>
+
+The notification contains:
+
+- Accident alert message
+- Latitude & Longitude
+- Google Maps location link
+- Real-time GPS location
+
+---
+
+# 📂 Repository Structure
 
 ```text
-iot-accident-detection-system
-│
-├── firmware/
-│   └── accident_detection.ino
+IoT-Based-Accident-Detection-and-Emergency-Alert-System
 │
 ├── circuit/
+│   ├── circuit_diagram.png
+│   └── README.md
+│
+├── docs/
+│   ├── Presentation.pdf
+│   └── README.md
+│
+├── firmware/
+│   ├── accident_detection.ino
+│   └── README.md
 │
 ├── images/
+│   ├── esp32.jpg
+│   ├── gps_module_ublox7m.jpg
+│   ├── mpu9250.jpg
+│   ├── telegram_alert.png
+│   └── README.md
 │
-├── results/
-│
-└── docs/
+└── README.md
 ```
 
 ---
 
-## Results
+# 📊 Results
 
-✔ Accident detection based on acceleration threshold
-
-✔ GPS location acquisition
-
-✔ Real-time Telegram notification
-
-✔ Google Maps integration
-
-✔ Functional hardware prototype
+- ✅ Automatic accident detection using MPU-9250 sensor data.
+- ✅ Real-time GPS coordinate acquisition.
+- ✅ Instant Telegram notification with Google Maps link.
+- ✅ Functional ESP32-based embedded system prototype.
 
 ---
 
-## Future Improvements
+# 👨‍💻 Team & Contributions
 
-- GSM/LTE fallback communication
-- Cloud dashboard
-- Mobile application
+This project was developed as a two-member academic team project.
+
+## Akshay Singh
+
+- Developed the complete ESP32 firmware.
+- Implemented the accident detection algorithm using MPU-9250 sensor data.
+- Integrated the Ublox 7M GPS module for location tracking.
+- Developed Telegram Bot API integration for automated emergency alerts.
+- Implemented Wi-Fi communication and HTTP requests.
+- Performed software testing and debugging.
+- Prepared the patent disclosure documentation.
+
+## Sagar Kumar
+
+- Integrated the hardware components.
+- Assembled the hardware prototype.
+- Performed circuit wiring and hardware setup.
+
+---
+
+# 🚀 Future Improvements
+
+- GSM/LTE backup communication
+- Mobile application integration
+- Cloud dashboard for vehicle monitoring
 - Machine Learning-based accident detection
-- Battery backup
+- Battery backup system
+- SOS button support
 - Vehicle health monitoring
 
 ---
 
-## My Contributions
+# 📄 Documentation
 
-- ESP32 firmware development
-- Telegram Bot integration
-- Real-time emergency communication
-- Sensor integration and debugging
-- Prototype testing and validation
-- Technical documentation
+The repository includes:
 
----
-
-## Acknowledgements
-
-Project completed under the guidance of **Dr. Dev Narayan Yadav**
-
-Department of Computer Science and Engineering
-
-National Institute of Technology Rourkela
+- Project presentation
+- ESP32 firmware
+- Circuit diagram
+- Hardware images
 
 ---
 
-## License
+# 🎓 Academic Information
 
-This repository is intended for educational and research purposes.
+**Project:** IoT-Based Accident Detection and Emergency Alert System
+
+**Institution:** National Institute of Technology Rourkela
+
+**Department:** Computer Science and Engineering
+
+**Project Supervisor:** Dr. Dev Narayan Yadav
+
+**Project Type:** Team Project
+
+---
+
+# 📜 License
+
+This repository is shared for educational and research purposes.
